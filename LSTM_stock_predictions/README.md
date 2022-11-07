@@ -8,7 +8,7 @@ This is a mini project to make a long short term memory (LSTM) recurrent neural 
 - pandas
 
 ## Function
-Running the main.py script will create a RNN and train it on a dataset of Teslas stock opening prices between 2010 and 2018. The model is then tested against data from XXX to XXXXX.
+Running the main.py script will create a RNN and train it on a dataset of Teslas stock opening prices between 2010 and 2018. The model is then tested against data from 2018 to 2020.
 The predicted opening stock prices are compared to the real stock prices in a plot that is shown below, it is clear that the model is not a perfect fit, but broadly follows the same pricing trends as the real data. 
 
 
