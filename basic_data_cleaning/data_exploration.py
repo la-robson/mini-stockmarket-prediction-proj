@@ -6,9 +6,6 @@ import seaborn as sns
 
 print('Libraries imported.')
 
-# define functions
-
-
 # define variables
 sample_data_path = '../basic_data_cleaning/data/original_data/noaa_icoads_2012_sample.csv'
 plot_save_path = f'../basic_data_cleaning/data/data_exploration/'
