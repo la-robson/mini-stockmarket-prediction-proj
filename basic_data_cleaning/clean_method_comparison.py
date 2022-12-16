@@ -42,8 +42,8 @@ val_df = pd.read_csv(''.join([validation_data_path, validation_files[1]]))
 # for some reason the sorts are not working properly in the cleaning functions so sort again here
 chron_sort_t_df = test_df.sort_values(by=['month', 'day', 'hour'])
 chron_sort_v_df = val_df.sort_values(by=['month', 'day', 'hour'])
-loc_sort_t_df = test_df.sort_values(by=['longitude', 'latitude'])
-loc_sort_v_df = val_df.sort_values(by=['longitude', 'latitude'])
+loc_sort_t_df = test_df.sort_values(by=['latitude','longitude']) # (by=['longitude', 'latitude'])
+loc_sort_v_df = val_df.sort_values(by=['latitude','longitude']) # (by=['longitude', 'latitude'])
 # apply cleaning methods
 drop_nan_df = drop_nan(test_df, save=False)
 fill_mean_df = fill_mean(test_df, save=False)

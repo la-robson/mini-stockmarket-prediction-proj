@@ -87,10 +87,10 @@ def fill_mean_chron_win(df, filename='chron_mean_fill.csv', variable="sea_surfac
 # improve mean fill to be chronologically implemented
 def fill_mean_loc(df, filename='loc_mean_fill.csv', variable="sea_surface_temp", save=True, window=3):
     """
-    df must be already sorted chronologically
+    df must be already sorted by location (lat then long)
     """
     n = len(df)
-    df.sort_values(by=['longitude', 'latitude'], inplace=True) # sort by location
+
     # iterate through each row in dataset
     if window >= len(df):
         print(f'Invalid window selected, must be less that data length {n}')
@@ -111,16 +111,22 @@ def fill_mean_loc(df, filename='loc_mean_fill.csv', variable="sea_surface_temp",
 
 
 if __name__ == "__main__":
-    # define variables
+    # # define variables
+    # sample_data_path = '../basic_data_cleaning/data/original_data/noaa_icoads_2012_sample.csv'
+    # data_save_path = f'../basic_data_cleaning/data/cleaned_data/'
+    #
+    # # import data
+    # sample_df = pd.read_csv(sample_data_path)
+    #
+    # # clean sample data
+    # drop_nan(sample_df.copy(), 'dropped_missing_sample.csv')
+    # fill_mean(sample_df.copy(), 'mean_fill_sample.csv')
+    # fill_mean_loc(sample_df.copy(), 'loc_mean_fill_sample.csv')
+    # fill_mean_chron(sample_df.copy(), 'chron_mean_fill_sample.csv')  # df must be chronologically sorted first
+
     sample_data_path = '../basic_data_cleaning/data/original_data/noaa_icoads_2012_sample.csv'
-    data_save_path = f'../basic_data_cleaning/data/cleaned_data/'
 
     # import data
     sample_df = pd.read_csv(sample_data_path)
 
-    # clean sample data
-    drop_nan(sample_df.copy(), 'dropped_missing_sample.csv')
-    fill_mean(sample_df.copy(), 'mean_fill_sample.csv')
-    fill_mean_loc(sample_df.copy(), 'loc_mean_fill_sample.csv')
-    fill_mean_chron(sample_df.copy(), 'chron_mean_fill_sample.csv')  # df must be chronologically sorted first
-
+    print(sample_df.describe())
