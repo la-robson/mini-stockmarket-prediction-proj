@@ -42,7 +42,6 @@ def fill_mean_chron(df, filename='chron_mean_fill.csv', variable="sea_surface_te
     df must be already sorted chronologically
     """
     df.sort_values(by=['month', 'day', 'hour'], inplace=True)  # sort chronologically
-    print(df.head())
     curr_df = df.head(1)  # initialize current df with first row
 
 
@@ -59,6 +58,32 @@ def fill_mean_chron(df, filename='chron_mean_fill.csv', variable="sea_surface_te
     return curr_df
 
 
+# improve mean fill to be chronologically implemented with a window
+def fill_mean_chron_win(df, filename='chron_mean_fill.csv', variable="sea_surface_temp",
+                    window=20, save=True):
+    """
+
+    """
+    df.sort_values(by=['month', 'day', 'hour'], inplace=True)  # sort chronologically
+    curr_df = df.head(1)  # initialize current df with first row
+
+
+    # iterate through each row in dataset (equivalent to receiving stream of data)
+    for i in range(1, len(df)):
+        # get dataset so far
+        curr_df = curr_df.append(df.iloc[i])
+        # if missing value fill with the mean of the dataset available so far
+        if np.isnan(curr_df.iloc[i][variable]):
+            if i-window<0:
+                curr_df[variable].iloc[i] = curr_df[variable].iloc[0:i].mean()
+            else:
+                curr_df[variable].iloc[i] = curr_df[variable].iloc[i-window:i].mean()
+    # save csv and return dataframe
+    if save:
+        save_df(curr_df, filename)
+    return curr_df
+
+
 # improve mean fill to be chronologically implemented
 def fill_mean_loc(df, filename='loc_mean_fill.csv', variable="sea_surface_temp", save=True, window=3):
     """
@@ -66,7 +91,6 @@ def fill_mean_loc(df, filename='loc_mean_fill.csv', variable="sea_surface_temp",
     """
     n = len(df)
     df.sort_values(by=['longitude', 'latitude'], inplace=True) # sort by location
-    print(df.head(20))
     # iterate through each row in dataset
     if window >= len(df):
         print(f'Invalid window selected, must be less that data length {n}')
@@ -93,8 +117,7 @@ if __name__ == "__main__":
 
     # import data
     sample_df = pd.read_csv(sample_data_path)
-    # sample_df.sort_values(by=['month', 'day', 'hour'], inplace=True)  # sort chronologically
-    print(sample_df.head())
+
     # clean sample data
     drop_nan(sample_df.copy(), 'dropped_missing_sample.csv')
     fill_mean(sample_df.copy(), 'mean_fill_sample.csv')
