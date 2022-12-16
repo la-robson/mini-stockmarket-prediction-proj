@@ -26,12 +26,10 @@ To create the testing and validation dataset that was representative of the full
 2. Drop all missing values to create a ‘complete’ dataset, this is the validation data
 3. Create a copy of the validation data and randomly replace values with NaN in the same proportion as the original dataset, this is the test data
 
-
-## Method
 The cleaning models could then be applied to the test dataset, and the filled values can be compared to the real values in the validation dataset. In addition to using the MSE score to compare the different methods, the difference between the cleaned data and the validation data was visually checked using KDE plots. These are very similar to histograms they visualize a distribution of data density and are much easier to interpret than scatter plots. 
 
 
-## Results
+## Results:
 | ![](https://github.com/la-robson/mini_projects/blob/main/basic_data_cleaning/data/clean_comparison_plots/mean_fill.png) | ![](https://github.com/la-robson/mini_projects/blob/main/basic_data_cleaning/data/clean_comparison_plots/chron_mean_fill.png)|
 |:--:|:--:| 
 | ![](https://github.com/la-robson/mini_projects/blob/main/basic_data_cleaning/data/clean_comparison_plots/chron_mean_window_fill.png) | ![](https://github.com/la-robson/mini_projects/blob/main/basic_data_cleaning/data/clean_comparison_plots/loc_mean_fill.png)|
@@ -39,3 +37,10 @@ The cleaning models could then be applied to the test dataset, and the filled va
 *KDE contour plot of cleaned data vs validation data for different basic data filling methods*
 
 The table above above shows the KDE plots of each of the models, the ideal would be for the data to all lie on the y=x line, the closest to this is the cleaning method using location based filling prioritizing latitude over longitude. The other plots have a very distinctive y=x line and a horizonal cluster around the mean temperature, this indicates that the data is being filled with values at, or very close to the global mean temperature.
+
+
+## Conclusions:
+From this table it is clear that the location-based filling method was most accurately filling the missing values. This was expected as location is highly influential in the temperature of the ocean. However, the more complex methods do not have a significant improvement over the baseline. There is room for significant improvement in these methods. Firstly the chronological windowed and location method could be optimized by testing different sized sample windows for the mean, the values used here were arbitrarily selected and have not been optimized. Secondly the chronological and location based methods could be combined, so both are taken into account, location is evidently a more important factor, but they both are explanatory variables so should be included. 
+
+Alternative methods that could be considered in future are filling with the mean historical value from the nearest sensor at the previous timestep, or the interpolated values of the nearest three sensors at the previous timestep (triangulation), or the trend over time could be extrapolated forwards to fill the missing value. Clearly it is possible to increase the complexity of the interpolation method, and it would be expected that increasing the complexity would increase the accuracy of the filled in value on average. For the sake of efficiency, it is preferable to use the simplest method that gives an acceptable result. 
+
