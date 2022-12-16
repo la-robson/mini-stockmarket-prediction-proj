@@ -38,10 +38,6 @@ meanfill2_df.rename(columns={"sea_surface_temp": "sea_surface_temp_mean2"}, inpl
 # make dataframe of missing values
 nan_df = sample_df.isnull().sum(axis=0)
 
-#
-# plot_df = sample_df.append(dropped_df)
-#
-# print(plot_df.head(20))
 
 fig, axes = plt.subplots(3)
 
