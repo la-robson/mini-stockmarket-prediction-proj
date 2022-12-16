@@ -1,7 +1,7 @@
 # Basic Data Cleaning 
 
 ## Introduction:
-This is an investigation into methods that could be used to fill missing data values in a dataset with a time and locaation data asocciated with the data of interest. The methods tested below are very basic, and are intended to be used as a starting point that can be built upon and tailored to a specific dataset. Four methods were tested: 
+This is an investigation into methods that could be used to fill missing data values in a dataset with time and location data asocciated with the data of interest. The methods tested below are very basic, and are intended to be used as a starting point that can be built upon and tailored to a specific dataset. Four methods were tested: 
  - Baseline
    - Mean temperature value replaces all missing values
  - Chronological
