@@ -1,6 +1,8 @@
 # Mini project - LSTM stock price prediction 
 This is a mini project to make a long short term memory (LSTM) recurrent neural network (RNN). This project is based off a tutorial linked below in the references section.
 
+*Note:* This is an unfinished project, it was abandoned due to other schoolwork commitments, and when I returned to it I realised that the tesla dataset I was using does not have uniformily distriobuted data in time, making it unsuitable for use with this beginners project.
+
 ## Libraries Required:
 - keras
 - tensorflow
