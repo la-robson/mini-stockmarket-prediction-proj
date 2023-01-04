@@ -14,4 +14,6 @@ XXXXXXXX
 
 
 ### References:
-https://www.ncei.noaa.gov/cdo-web/datasets#GHCND
+ - https://www.ncei.noaa.gov/cdo-web/datasets#GHCND
+ - https://www.kaggle.com/code/nilanml/simple-intro-to-time-series-forecasting-using-lstm/notebook
+ - https://machinelearningmastery.com/display-deep-learning-model-training-history-in-keras/
